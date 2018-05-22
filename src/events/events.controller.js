@@ -12,7 +12,7 @@ const eventsController = {
 
     const query = await events
       .find(queryParams)
-      .limit(10)
+      //.limit(10)
       .sort("time");
 
     res.status(200).json(query);
@@ -21,7 +21,8 @@ const eventsController = {
   async create(req, res) {
     const schema = joi.object({
       device: joi.string().required(),
-      severity: joi.string().required()
+      severity: joi.string().required(),
+      location: joi.string().optional()
     });
 
     if (schema.validate(req.body).error != null) {
@@ -57,7 +58,7 @@ const eventsController = {
     let event = await events.findById(eventID);
 
     if (!event) {
-      res.status(400).json({ msg: "event not find" });
+      res.status(400).json({ msg: "event not found" });
       return;
     }
 
@@ -67,6 +68,17 @@ const eventsController = {
     console.log(event);
 
     res.status(200).json({ msg: "event was solved" });
+  },
+
+  async delete(req, res) {
+    const eventID = await devices.findOneAndRemove({ id: req.params.id });
+
+    if (!eventID) {
+      res.status(400).json({ msg: "event not found" });
+      return;
+    }
+
+    res.status(200).json({ msg: `event deleted ${eventID.id}` });
   }
 };
 
