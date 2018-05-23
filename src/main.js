@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const jwt = require("express-jwt");
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://mongo/guardian");
+mongoose.connect("mongodb://172.19.0.2/guardian");
 
 let app = express();
 

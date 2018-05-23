@@ -56,6 +56,8 @@ const eventsController = {
     const eventID = req.params.id;
 
     let event = await events.findById(eventID);
+    
+    console.log(event);
 
     if (!event) {
       res.status(400).json({ msg: "event not found" });
@@ -71,7 +73,10 @@ const eventsController = {
   },
 
   async delete(req, res) {
-    const eventID = await devices.findOneAndRemove({ id: req.params.id });
+
+    const eventID = await events.findByIdAndRemove(req.params.id);
+
+    console.log(eventID);
 
     if (!eventID) {
       res.status(400).json({ msg: "event not found" });
