@@ -6,7 +6,7 @@ services:
       - mongo
     labels:
       - "traefik.backend=api"
-      - "traefik.frontend.rule=Host:api.guardian-angel.northeurope.cloudapp.azure.com"
+      - "traefik.frontend.rule=Host:guardian-angel.northeurope.cloudapp.azure.com"
 
   mongo:
     image: mongo
