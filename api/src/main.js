@@ -49,4 +49,4 @@ app.use((req, res, next) => {
   res.status(404).json({ msg: "not found" });
 });
 
-app.listen("8080");
+app.listen("80");
