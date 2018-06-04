@@ -7,7 +7,7 @@ const passengersController = {
   async getAll(req, res) {
     const query = await passengers.find({ user: req.user.id });
 
-    res.status(200).json(query.map(q => q.uid));
+    res.status(200).json(query.map(q => q.uid, q.name, q.gender, q.bloodType, q.age, q.knownDiseases));
   },
 
   async create(req, res) {
@@ -17,8 +17,8 @@ const passengersController = {
         .string()
         .valid("male", "female")
         .required(),
-      bloodType: joi.string().optional(),
-      birthday: joi.date().required(),
+      bloodType: joi.string().required(),
+      age: joi.string().optional(),
       knownDiseases: joi.array().optional()
     });
 
@@ -36,7 +36,7 @@ const passengersController = {
 
     console.log(query);
 
-    res.status(200).json({ uid: query.uid, name: query.name });
+    res.status(200).json({ uid: query.uid, name: query.name, gender: query.gender, bloodType: query.bloodType, age: query.age, knownDiseases: query.knownDiseases});
   },
 
   async delete(req, res) {
