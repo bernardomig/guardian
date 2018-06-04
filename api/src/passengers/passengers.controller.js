@@ -7,7 +7,7 @@ const passengersController = {
   async getAll(req, res) {
     const query = await passengers.find({ user: req.user.id });
 
-    res.status(200).json(query.map(q => q.uid, q.name, q.gender, q.bloodType, q.birthday, q.knownDiseases));
+    res.status(200).json(query.map(q => {q.uid, q.name, q.gender, q.bloodType, q.birthday, q.knownDiseases}));
   },
 
   async create(req, res) {
