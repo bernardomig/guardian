@@ -6,7 +6,7 @@ const PassengerSchema = mongoose.Schema({
   name: String,
   gender: String,
   bloodType: String,
-  age: String,
+  birthday: Date,
   knownDiseases: [String]
 });
 
