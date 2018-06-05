@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const jwt = require("express-jwt");
+const cors = require("cors");
 
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://mongo/guardian");
@@ -12,6 +13,8 @@ app.use(morgan("combined"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cors());
 
 let router = express.Router();
 

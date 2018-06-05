@@ -18,7 +18,7 @@ const verifyBasic = async (username, password, cb) => {
 
   const samePass = await bcrypt.compare(password, query.password);
 
-  cb(null, true);
+  cb(null, samePass);
 };
 
 const basicAuth = expressBasicAuth({
